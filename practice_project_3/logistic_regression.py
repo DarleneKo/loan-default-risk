@@ -3,13 +3,19 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
+# path to read in csv
+
 X = voice.drop("label", axis=1)
 y = voice["label"]
 print(X.shape, y.shape)
 
+#splitting trained and tested
+
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1, stratify=y)
+
+
 
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression()
@@ -22,6 +28,8 @@ classifier
 
  print(f"Training Data Score: {classifier.score(X_train, y_train)}")
 print(f"Testing Data Score: {classifier.score(X_test, y_test)}")
+
+#read prediction of loan status based off of tested data
 
 predictions = classifier.predict(X_test)
 print(f"First 10 Predictions:   {predictions[:10]}")
