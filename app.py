@@ -10,8 +10,8 @@ from sklearn.ensemble import RandomForestClassifier
 # Create an instance of Flask
 app = Flask(__name__)
 
-with open(f'best_rf_model.pickle', "rb") as f:
-    model = pickle.load(f)
+with open(f'Best_Model.pickle', "rb") as f:
+    saved_model = pickle.load(f)
 
 feature_names = model.get_booster().feature_names
 
