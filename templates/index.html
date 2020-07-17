@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loan Default Form</title>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <body>
+        <div class="container">
+            <div class="jumbotron" style="text-align: center">
+                <h1>Predicting Loan Default</h1>
+                <p>Enter your details below!</p>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <form method="POST" action="/" role="form", name="donationform">
+                        <div class="form-group">
+                            <label>Age (years)</label>
+                            <input type="text" class="form-control" name="person_age" placeholder="Age">
+                        </div>
+                        <div class="form-group">
+                            <label>Income</label>
+                            <input type="text" class="form-control" name="person_income" placeholder="Income">
+                        </div>
+                        <div class="form-group">
+                            <label>Home Ownership</label>
+                            <input type="text" class="form-control" name="person_home_ownership" placeholder="Home Ownership">
+                        </div>
+                        <div class="form-group">
+                            <label>Employment Length (years)</label>
+                            <input type="text" class="form-control" name="person_emp_length" placeholder="Employment Length">
+                        </div>
+                        <div class="form-group">
+                            <label>Loan Intent</label>
+                            <input type="text" class="form-control" name="loan_intent" placeholder="Loan Intent">
+                        </div>
+                        <div class="form-group">
+                            <label>Loan Grade</label>
+                            <input type="text" class="form-control" name="loan_grade" placeholder="Loan Grade">
+                        </div>
+                        <div class="form-group">
+                            <label>Loan Amount</label>
+                            <input type="text" class="form-control" name="loan_amnt" placeholder="Loan Amount">
+                        </div>
+                        <div class="form-group">
+                            <label>Loan Interest Rate</label>
+                            <input type="text" class="form-control" name="loan_int_rate" placeholder="Loan Interest Rate">
+                        </div>
+                        <div class="form-group">
+                            <label>Loan Percent Income</label>
+                            <input type="text" class="form-control" name="loan_percent_income" placeholder="Loan Percent Income">
+                        </div>
+                        <div class="form-group">
+                            <label>Default on File?</label>
+                            <input type="text" class="form-control" name="cb_person_default_on_file" placeholder="Default on File">
+                        </div>
+                        <div class="form-group">
+                            <label>Credit History Length</label>
+                            <input type="text" class="form-control" name="cb_person_cred_hist_length" placeholder="Credit History Length">
+                        </div>
+                        <input type="submit" value="submit" class="btn btn-default">
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <h1>{{ message }}</h1>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
