@@ -1,26 +1,46 @@
-from flask import Flask, render_template, redirect
+import sys
 import pandas as pd
 import numpy as np
+import os
 import pickle
 from sklearn import tree
-import os
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
+from flask import Flask, render_template, redirect, request
+
 
 # Create an instance of Flask
 app = Flask(__name__)
 
-with open(f'Best_Model.pickle', "rb") as f:
+with open(f'best_model.pkl', "rb") as f:
     saved_model = pickle.load(f)
-
-feature_names = model.get_booster().feature_names
 
 # Route to render index.html template using data from Mongo
 @app.route("/", methods=["GET", "POST"])
 def home():
-    output_message = ""
 
-     if request.method == "POST":
+    # output_message = ""
+
+    # if request.method == "POST":
+    #     person_age = float(request.form["person_age"])
+    #     person_income = float(request.form["person_income"])
+    #     person_home_ownership = float(request.form["person_home_ownership"])
+    #     person_emp_length = float(request.form["person_emp_length"])
+    #     loan_intent = float(request.form["loan_intent"])
+    #     loan_grade = float(request.form["loan_grade"])
+    #     loan_amnt = float(request.form["loan_amnt"])
+    #     loan_int_rate = float(request.form["loan_int_rate"])
+    #     loan_percent_income = float(request.form["loan_percent_income"])
+    #     cb_person_default_on_file = float(request.form["cb_person_default_on_file"])
+    #     cb_person_cred_hist_length = float(request.form["cb_person_cred_hist_length"])
+
+
+
+    if request.method == "GET":
+        return render_template("index.html", message = "")
+
+    elif request.method == "POST":
         person_age = float(request.form["person_age"])
         person_income = float(request.form["person_income"])
         person_home_ownership = float(request.form["person_home_ownership"])
@@ -33,32 +53,53 @@ def home():
         cb_person_default_on_file = float(request.form["cb_person_default_on_file"])
         cb_person_cred_hist_length = float(request.form["cb_person_cred_hist_length"])
 
-    # if request.method == "POST":
-    #     recency = float(request.form["recency"])
-    #     frequency = float(request.form["frequency"])
-    #     monetary = float(request.form["monetary"])
-    #     time = float(request.form["time"])
-
         # data must be converted to df with matching feature names before predict
 
+        columns = ['person_age', 'person_income', 'person_home_ownership', 'person_emp_length', 'loan_intent', 'loan_grade',
+            'loan_amnt', 'loan_int_rate', 'loan_percent_income', 'cb_person_default_on_file', 'cb_person_cred_hist_length']
+        
         data = pd.DataFrame(np.array([[person_age, person_income, person_home_ownership, person_emp_length, loan_intent, loan_grade,
-        loan_amnt, loan_int_rate, loan_percent_income, cb_person_default_on_file, cb_person_cred_hist_length]]), columns=feature_names)
-        result = model.predict(data)
-        if result == 1:
-            output_message = "This application is at high-risk for a loan default."
-        else:
-            output_message = "This application is NOT at high-risk for a loan default."
-    
-    return render_template("index.html", message = output_message)
+            loan_amnt, loan_int_rate, loan_percent_income, cb_person_default_on_file, cb_person_cred_hist_length]]), columns=columns)
 
-    #     data = pd.DataFrame(np.array([[recency, frequency, monetary, time]]), columns=feature_names)
-    #     result = model.predict(data)
-    #     if result == 1:
-    #         output_message = "Nice, you will donate soon, thank you ^_^"
-    #     else:
-    #         output_message = "Please consider donating :-("
+
+        #Scale new data from inputted values from the form
+        X_scaler = StandardScaler().fit(data)
+        X_new_scaled = X_scaler.transform(data)
+
+        result = saved_model.predict(X_new_scaled)
+        if result == 1:
+            output_message = "This loan is at high-risk for a default."
+        else:
+            output_message = "This loan is NOT at high-risk for a default."
+
+            return render_template("index.html", message = result)
+
+    else:
+        return render_template("index.html", message = "There is a problem with input values.")
+   
+
+
+
+
+def isnumber(x):
+    if x is None: return(False)
+    if pd.isnull(x): return(False)
+    try:
+        int(x)
+        return(True)
+    except ValueError:
+        try:
+            float(x)
+            return(True)
+        except ValueError:
+            return(False)
+    return(False)
     
-    # return render_template("index.html", message = output_message)
+
+
+
+
 
 if __name__ == "__main__":
     app.run()
+    
