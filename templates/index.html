@@ -31,20 +31,40 @@
                             <input type="text" class="form-control" name="person_income" placeholder="Income">
                         </div>
                         <div class="form-group">
-                            <label>Home Ownership</label>
-                            <input type="text" class="form-control" name="person_home_ownership" placeholder="Home Ownership">
+                            <label for="person_home_ownership">Home Ownership Status: </label>
+                            <select name="person_home_ownership" id="person_home_ownership">
+                                <option value=0>Mortgage</option>
+                                <option value=1>Rent</option>
+                                <option value=2>Own</option>
+                                <option value=3>Other</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Employment Length (years)</label>
                             <input type="text" class="form-control" name="person_emp_length" placeholder="Employment Length">
                         </div>
                         <div class="form-group">
-                            <label>Loan Intent</label>
-                            <input type="text" class="form-control" name="loan_intent" placeholder="Loan Intent">
+                            <label for="loan_intent">Loan Intent: </label>
+                            <select name="loan_intent" id="loan_intent">
+                                <option value=0>Debt Consolidation</option>
+                                <option value=1>Education</option>
+                                <option value=2>Home Improvement</option>
+                                <option value=3>Medical</option>
+                                <option value=4>Personal</option>
+                                <option value=5>Venture</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Loan Grade</label>
-                            <input type="text" class="form-control" name="loan_grade" placeholder="Loan Grade">
+                            <label for="loan_grade">Loan Grade: </label>
+                            <select name="loan_grade" id="loan_grade">
+                                <option value=0>A</option>
+                                <option value=1>B</option>
+                                <option value=2>C</option>
+                                <option value=3>D</option>
+                                <option value=4>E</option>
+                                <option value=5>F</option>
+                                <option value=6>G</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Loan Amount</label>
@@ -59,8 +79,11 @@
                             <input type="text" class="form-control" name="loan_percent_income" placeholder="Loan Percent Income">
                         </div>
                         <div class="form-group">
-                            <label>Default on File?</label>
-                            <input type="text" class="form-control" name="cb_person_default_on_file" placeholder="Default on File">
+                            <label for="cb_person_default_on_file">Default on File? </label>
+                            <select name="cb_person_default_on_file" id="cb_person_default_on_file">
+                                <option value=0>Yes</option>
+                                <option value=1>No</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Credit History Length</label>
