@@ -20,27 +20,9 @@ with open(f'best_model.pkl', "rb") as f:
 @app.route("/", methods=["GET", "POST"])
 def home():
 
-    # output_message = ""
+    output_message = ""
 
-    # if request.method == "POST":
-    #     person_age = float(request.form["person_age"])
-    #     person_income = float(request.form["person_income"])
-    #     person_home_ownership = float(request.form["person_home_ownership"])
-    #     person_emp_length = float(request.form["person_emp_length"])
-    #     loan_intent = float(request.form["loan_intent"])
-    #     loan_grade = float(request.form["loan_grade"])
-    #     loan_amnt = float(request.form["loan_amnt"])
-    #     loan_int_rate = float(request.form["loan_int_rate"])
-    #     loan_percent_income = float(request.form["loan_percent_income"])
-    #     cb_person_default_on_file = float(request.form["cb_person_default_on_file"])
-    #     cb_person_cred_hist_length = float(request.form["cb_person_cred_hist_length"])
-
-
-
-    if request.method == "GET":
-        return render_template("index.html", message = "")
-
-    elif request.method == "POST":
+    if request.method == "POST":
         person_age = float(request.form["person_age"])
         person_income = float(request.form["person_income"])
         person_home_ownership = float(request.form["person_home_ownership"])
@@ -52,8 +34,10 @@ def home():
         loan_percent_income = float(request.form["loan_percent_income"])
         cb_person_default_on_file = float(request.form["cb_person_default_on_file"])
         cb_person_cred_hist_length = float(request.form["cb_person_cred_hist_length"])
+        print(person_age,person_income,person_home_ownership,person_emp_length,loan_intent,loan_grade,loan_amnt,loan_int_rate,loan_percent_income,cb_person_default_on_file,cb_person_cred_hist_length)
 
-        # data must be converted to df with matching feature names before predict
+
+    # data must be converted to df with matching feature names before predict
 
         columns = ['person_age', 'person_income', 'person_home_ownership', 'person_emp_length', 'loan_intent', 'loan_grade',
             'loan_amnt', 'loan_int_rate', 'loan_percent_income', 'cb_person_default_on_file', 'cb_person_cred_hist_length']
@@ -63,20 +47,19 @@ def home():
 
 
         #Scale new data from inputted values from the form
-        X_scaler = StandardScaler().fit(data)
-        X_new_scaled = X_scaler.transform(data)
+        #X_scaler = StandardScaler().fit(data)
+        #X_new_scaled = X_scaler.transform(data)
 
-        result = saved_model.predict(X_new_scaled)
+        result = saved_model.predict(data)
+
         if result == 1:
             output_message = "This loan is at high-risk for a default."
         else:
             output_message = "This loan is NOT at high-risk for a default."
 
-            return render_template("index.html", message = result)
+        return render_template("index.html", message = output_message)
 
-    else:
-        return render_template("index.html", message = "There is a problem with input values.")
-   
+    return render_template("index.html", message = "")
 
 
 
@@ -101,5 +84,5 @@ def isnumber(x):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
     

@@ -21,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-md-offset-2 col-md-8">
-                    <form method="POST" action="/" role="form", name="donationform">
+                    <form method="POST" action="/" role="form", name="loandefaultform">
                         <div class="form-group">
                             <label>Age (years)</label>
                             <input type="number" class="form-control" name="person_age" placeholder="Age" required>
@@ -75,8 +75,8 @@
                             <input type="number" class="form-control" name="loan_int_rate" placeholder="Loan Interest Rate" required>
                         </div>
                         <div class="form-group">
-                            <label>Loan Percent Income</label>
-                            <input type="number" class="form-control" name="loan_percent_income" placeholder="Loan Percent Income" required>
+                            <label>Loan-to-Income Ratio (Please enter ratio to 2 decimal places)</label>
+                            <input type="float" class="form-control" name="loan_percent_income" placeholder="Loan-to-Income Ratio" required>
                         </div>
                         <div class="form-group">
                             <label for="cb_person_default_on_file">Default on File? </label>
@@ -89,7 +89,7 @@
                             <label>Credit History Length</label>
                             <input type="number" class="form-control" name="cb_person_cred_hist_length" placeholder="Credit History Length" required>
                         </div>
-                        <input type="submit" value="submit" class="btn btn-default">
+                        <button type="submit"  formaction="/" class="btn btn-default">Submit</button>
                     </form>
                 </div>
             </div>
