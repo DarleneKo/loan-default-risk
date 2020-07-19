@@ -24,11 +24,11 @@
                     <form method="POST" action="/" role="form", name="loandefaultform">
                         <div class="form-group">
                             <label>Age (years)</label>
-                            <input type="number" class="form-control" name="person_age" placeholder="Age" required>
+                            <input type="float" class="form-control" name="person_age" placeholder="Age" required>
                         </div>
                         <div class="form-group">
                             <label>Income</label>
-                            <input type="number" class="form-control" name="person_income" placeholder="Income" required>
+                            <input type="float" class="form-control" name="person_income" placeholder="Income" required>
                         </div>
                         <div class="form-group">
                             <label for="person_home_ownership">Home Ownership Status: </label>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label>Employment Length (years)</label>
-                            <input type="number" class="form-control" name="person_emp_length" placeholder="Employment Length" required>
+                            <input type="float" class="form-control" name="person_emp_length" placeholder="Employment Length" required>
                         </div>
                         <div class="form-group">
                             <label for="loan_intent">Loan Intent: </label>
@@ -68,11 +68,11 @@
                         </div>
                         <div class="form-group">
                             <label>Loan Amount</label>
-                            <input type="number" class="form-control" name="loan_amnt" placeholder="Loan Amount" required>
+                            <input type="float" class="form-control" name="loan_amnt" placeholder="Loan Amount" required>
                         </div>
                         <div class="form-group">
                             <label>Loan Interest Rate</label>
-                            <input type="number" class="form-control" name="loan_int_rate" placeholder="Loan Interest Rate" required>
+                            <input type="float" class="form-control" name="loan_int_rate" placeholder="Loan Interest Rate" required>
                         </div>
                         <div class="form-group">
                             <label>Loan-to-Income Ratio (Please enter ratio to 2 decimal places)</label>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group">
                             <label>Credit History Length</label>
-                            <input type="number" class="form-control" name="cb_person_cred_hist_length" placeholder="Credit History Length" required>
+                            <input type="float" class="form-control" name="cb_person_cred_hist_length" placeholder="Credit History Length" required>
                         </div>
                         <button type="submit"  formaction="/" class="btn btn-default">Submit</button>
                     </form>
