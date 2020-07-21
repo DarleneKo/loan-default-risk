@@ -11,7 +11,7 @@ from flask import Flask, render_template, redirect, request
 
 
 # Create an instance of Flask
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 with open(f'best_model.pkl', "rb") as f:
     saved_model = pickle.load(f)
@@ -45,11 +45,6 @@ def home():
         data = pd.DataFrame(np.array([[person_age, person_income, person_home_ownership, person_emp_length, loan_intent, loan_grade,
             loan_amnt, loan_int_rate, loan_percent_income, cb_person_default_on_file, cb_person_cred_hist_length]]), columns=columns)
 
-
-        #Scale new data from inputted values from the form
-        #X_scaler = StandardScaler().fit(data)
-        #X_new_scaled = X_scaler.transform(data)
-
         result = saved_model.predict(data)
 
         if result == 1:
@@ -62,27 +57,6 @@ def home():
     return render_template("index.html", message = "")
 
 
-
-
-def isnumber(x):
-    if x is None: return(False)
-    if pd.isnull(x): return(False)
-    try:
-        int(x)
-        return(True)
-    except ValueError:
-        try:
-            float(x)
-            return(True)
-        except ValueError:
-            return(False)
-    return(False)
-    
-
-
-
-
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
     
