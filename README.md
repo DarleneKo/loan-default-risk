@@ -9,6 +9,12 @@ Our team consisted of Ian Housman, TJ Jaramillo, Darlene Ko, and Cy Shi. We crea
 
 In comparison, Random Forest had the highest accuracy score of 0.93, which was utilized to subsequently create a simple online website to gather new data from 11 fields from an end-user to ultimately predict the outcome of potential loan default.  Our online submission form is fully deployed through Amazon Web Services (AWS) and can be accessed by clicking the following link:  http://loandefaultrisk-env-2.eba-k2mgprmy.us-east-2.elasticbeanstalk.com/ 
 
+Ultimately, the top four features that ranked from highest to lowest in determining if a loan is at risk of defaulting are as follows:
+
+1) Loan-to-Income Ratio
+2) Annual Income
+3) Loan Interest Rate
+4) Loan Grade
 
 
 ![](Screenshot.PNG)
