@@ -1,4 +1,4 @@
-# loan-default-risk
+# Calculating Risk of Loan Default Through Machine Learning
 
 Our team consisted of Ian Housman, TJ Jaramillo, Darlene Ko, and Cy Shi. We created and developed various machine learning predictive models to determine the outcome of a loan at risk of default.  Our team built four predictive models from a data set sourced from Kaggle.com and each of their classification reports are depicted below: 
 
